@@ -1,7 +1,5 @@
 package exerc4;
 
-import java.math.BigDecimal;
-
 /**
  * 4) Dado o valor de faturamento mensal de uma distribuidora, detalhado por estado:
  *
