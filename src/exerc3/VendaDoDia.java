@@ -3,7 +3,7 @@ package exerc3;
 public class VendaDoDia {
 
     Integer dia;
-    double valor;
+    static double valor;
 
     public VendaDoDia(Integer dia, double valor) {
         this.dia = dia;
@@ -18,7 +18,7 @@ public class VendaDoDia {
         this.dia = dia;
     }
 
-    public double getValor() {
+    public static double getValor() {
         return valor;
     }
 

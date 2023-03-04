@@ -23,20 +23,43 @@ public class Distribuidora {
 
         List listaVendas = new ArrayList<>();
         JSONParser parser = new JSONParser();
-
+        double faturamentoMes = 0;
+        int diasDeVendas = 0;
+        double maiorFaturamento = 0;
+        double menorFaturamento = 20000000;
+        int tamanhoArray = 0;
+        int diasFaturamentoMaiorMedia = 0;
 
         try {
             JSONArray dadosArquivo = (JSONArray) parser.parse(new InputStreamReader(new FileInputStream("src/exerc3/dados.json")));
+            // passando os dados do arquivo JSON para o arrayList
             for (Object o: dadosArquivo){
                 JSONObject dadosDoDia = (JSONObject) o;
                 Integer data = Integer.parseInt(dadosDoDia.get("dia").toString()) ;
                 Double valor = Double.parseDouble(dadosDoDia.get("valor").toString());
 
-            VendaDoDia vendaDoDia = new VendaDoDia(0,0);
-            vendaDoDia.setDia(data);
-            vendaDoDia.setValor(valor);
-            listaVendas.add(vendaDoDia);
+                VendaDoDia vendaDoDia = new VendaDoDia(0,0);
+                vendaDoDia.setDia(data);
+                vendaDoDia.setValor(valor);
 
+                // somando o faturamento do mês e quantidade de dias
+                faturamentoMes += vendaDoDia.getValor();
+                if (vendaDoDia.getValor() != 0) {
+                    diasDeVendas++;
+
+                    // buscando o menor valor
+                    if (vendaDoDia.getValor() < menorFaturamento) {
+                        menorFaturamento = vendaDoDia.getValor();
+                    }
+                }
+
+                // buscando o maior valor
+                if (vendaDoDia.getValor() > maiorFaturamento) {
+                    maiorFaturamento = vendaDoDia.getValor();
+                }
+
+                tamanhoArray++;
+                listaVendas.add(vendaDoDia);
 
             }
         } catch (FileNotFoundException e) {
@@ -47,10 +70,18 @@ public class Distribuidora {
             e.printStackTrace();
         }
 
+        double mediaMensal = faturamentoMes/diasDeVendas;
+        System.out.println("media" + mediaMensal);
+        for (Object obj: listaVendas){
+            if (VendaDoDia.getValor() > mediaMensal) {
+            diasFaturamentoMaiorMedia++;
+            }
+        }
 
+        System.out.println("O menor valor de faturamento ocorrido em um dia do mês foi R$ " + menorFaturamento);
+        System.out.println("O maior valor de faturamento ocorrido em um dia do mês foi R$ " + maiorFaturamento);
+        System.out.println("Número de dias no mês em que o valor de faturamento diário foi superior à média mensal: " + diasFaturamentoMaiorMedia);
 
     }
-
-
 
 }
