@@ -22,6 +22,7 @@ public class Distribuidora {
     public static void main(String[] args) throws FileNotFoundException {
 
         List listaVendas = new ArrayList<>();
+        VendaDoDia vendaDoDia = null;
         JSONParser parser = new JSONParser();
         int data;
         double valor;
@@ -32,10 +33,13 @@ public class Distribuidora {
                 JSONObject dadosDoDia = (JSONObject) o;
                 data = (Integer) dadosDoDia.get("dia");
                 valor = (double) dadosDoDia.get("valor");
+
+            vendaDoDia.setDia(data);
+            vendaDoDia.setValor(valor);
+            listaVendas.add(vendaDoDia);
+                System.out.println(vendaDoDia);
+
             }
-
-
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
