@@ -22,22 +22,21 @@ public class Distribuidora {
     public static void main(String[] args) throws FileNotFoundException {
 
         List listaVendas = new ArrayList<>();
-        VendaDoDia vendaDoDia = null;
         JSONParser parser = new JSONParser();
-        int data;
-        double valor;
+
 
         try {
-            JSONArray dadosArquivo = (JSONArray) parser.parse(new FileReader("dados.json"));
+            JSONArray dadosArquivo = (JSONArray) parser.parse(new InputStreamReader(new FileInputStream("src/exerc3/dados.json")));
             for (Object o: dadosArquivo){
                 JSONObject dadosDoDia = (JSONObject) o;
-                data = (Integer) dadosDoDia.get("dia");
-                valor = (double) dadosDoDia.get("valor");
+                Integer data = Integer.parseInt(dadosDoDia.get("dia").toString()) ;
+                Double valor = Double.parseDouble(dadosDoDia.get("valor").toString());
 
+            VendaDoDia vendaDoDia = new VendaDoDia(0,0);
             vendaDoDia.setDia(data);
             vendaDoDia.setValor(valor);
             listaVendas.add(vendaDoDia);
-                System.out.println(vendaDoDia);
+
 
             }
         } catch (FileNotFoundException e) {
