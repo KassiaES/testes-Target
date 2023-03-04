@@ -24,9 +24,19 @@ public class CalcPercent {
         double fatOutros = 19849.53;
 
         double totalFaturamento = fatSP + fatRJ + fatMG + fatES + fatOutros;
-        BigDecimal percentSP = new BigDecimal((fatSP/totalFaturamento) *100);
 
-        System.out.printf("O percentual de faturamento de São Paulo é %d", percentSP);
+        double percentSP = (fatSP/totalFaturamento)*100d;
+        double percentRJ = (fatRJ/totalFaturamento)*100d;
+        double percentMG = (fatMG/totalFaturamento)*100d;
+        double percentES = (fatES/totalFaturamento)*100d;
+        double percentOutros = (fatOutros/totalFaturamento)*100d;
+
+        System.out.println("O percentual de faturamento de SP é: " + percentSP +"%");
+        System.out.println("O percentual de faturamento do RJ é: " + percentRJ +"%");
+        System.out.println("O percentual de faturamento de MG é: " + percentMG +"%");
+        System.out.println("O percentual de faturamento do ES é: " + percentES +"%");
+        System.out.println("O percentual de faturamento de Outros é: " + percentOutros +"%");
+
     }
 
 }
