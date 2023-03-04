@@ -22,7 +22,7 @@ public class NumFibonacci {
         do {
             numFibo = numFibo + numContole;
             numContole = numFibo - numContole;
-            System.out.println(numFibo);
+            //System.out.println(numFibo);
             if (numFibo == num) {
                 validated = true;
             } else validated = false;

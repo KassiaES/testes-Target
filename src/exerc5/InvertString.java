@@ -19,11 +19,11 @@ public class InvertString {
         System.out.println("Digite uma palavra: ");
         entrada = leitor.nextLine();
 
+        char[] charArray = entrada.toCharArray();
 
-
-
-
+        for (int i=charArray.length; i > 0; i--) {
+            System.out.print(charArray[i-1]);
+        }
         leitor.close();
     }
-
 }
