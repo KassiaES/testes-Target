@@ -31,11 +31,11 @@ public class CalcPercent {
         double percentES = (fatES/totalFaturamento)*100d;
         double percentOutros = (fatOutros/totalFaturamento)*100d;
 
-        System.out.println("O percentual de faturamento de SP é: " + percentSP +"%");
-        System.out.println("O percentual de faturamento do RJ é: " + percentRJ +"%");
-        System.out.println("O percentual de faturamento de MG é: " + percentMG +"%");
-        System.out.println("O percentual de faturamento do ES é: " + percentES +"%");
-        System.out.println("O percentual de faturamento de Outros é: " + percentOutros +"%");
+        System.out.printf("O percentual de faturamento de SP é: %.2f%% \n", percentSP);
+        System.out.printf("O percentual de faturamento do RJ é: %.2f%% \n", percentRJ);
+        System.out.printf("O percentual de faturamento de MG é: %.2f%% \n", percentMG);
+        System.out.printf("O percentual de faturamento do ES é: %.2f%% \n", percentES);
+        System.out.printf("O percentual de faturamento de Outros é: %.2f%% \n", percentOutros);
 
     }
 
