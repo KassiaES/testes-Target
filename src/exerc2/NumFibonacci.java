@@ -1,5 +1,6 @@
 package exerc2;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -11,13 +12,12 @@ import java.util.Scanner;
 public class NumFibonacci {
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+
         boolean validated = false;
         int numFibo =  1;
         int numContole = 0;
 
-        System.out.println("Digite um número: ");
-        int num = scan.nextInt();
+        int num = getNumero("Digite um número inteiro e positivo: ");
 
         do {
             numFibo = numFibo + numContole;
@@ -33,7 +33,17 @@ public class NumFibonacci {
             System.out.println("O número pertence a sequência de Fibonacci!");
         } else System.out.println("O número não pertence a sequência de Fibonacci!");
 
-        scan.close();
+
+    }
+
+    public static int getNumero (String frase){
+        System.out.println(frase);
+        Scanner scan = new Scanner(System.in);
+        try {
+            return scan.nextInt();
+        } catch (InputMismatchException e) {
+            return getNumero("Tente novamente");
+        }
     }
 
 }
