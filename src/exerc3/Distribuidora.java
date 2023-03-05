@@ -22,17 +22,17 @@ public class Distribuidora {
     public static void main(String[] args) throws FileNotFoundException {
 
         List listaVendas = new ArrayList<>();
+        List listaFaturamento = new ArrayList<>();
         JSONParser parser = new JSONParser();
         double faturamentoMes = 0;
         int diasDeVendas = 0;
         double maiorFaturamento = 0;
         double menorFaturamento = 20000000;
         int tamanhoArray = 0;
-        int diasFaturamentoMaiorMedia = 0;
 
         try {
             JSONArray dadosArquivo = (JSONArray) parser.parse(new InputStreamReader(new FileInputStream("src/exerc3/dados.json")));
-            // passando os dados do arquivo JSON para o arrayList
+            // passando os dados do arquivo JSON para um arrayList de objetos
             for (Object o: dadosArquivo){
                 JSONObject dadosDoDia = (JSONObject) o;
                 Integer data = Integer.parseInt(dadosDoDia.get("dia").toString()) ;
@@ -59,6 +59,7 @@ public class Distribuidora {
                 }
 
                 tamanhoArray++;
+                listaFaturamento.add(vendaDoDia.getValor());
                 listaVendas.add(vendaDoDia);
 
             }
@@ -70,17 +71,20 @@ public class Distribuidora {
             e.printStackTrace();
         }
 
+        System.out.println(listaVendas);
+
         double mediaMensal = faturamentoMes/diasDeVendas;
-        System.out.println("media" + mediaMensal);
-        for (Object obj: listaVendas){
-            if (VendaDoDia.getValor() > mediaMensal) {
-            diasFaturamentoMaiorMedia++;
+        //encontrando o número de dias em que o faturamento foi maior do que a média
+        int count=0;
+        for (int i=0; i < tamanhoArray; i++) {
+            if (Double.valueOf((Double) listaFaturamento.get(i)) > mediaMensal) {
+                count++;
             }
         }
 
-        System.out.println("O menor valor de faturamento ocorrido em um dia do mês foi R$ " + menorFaturamento);
-        System.out.println("O maior valor de faturamento ocorrido em um dia do mês foi R$ " + maiorFaturamento);
-        System.out.println("Número de dias no mês em que o valor de faturamento diário foi superior à média mensal: " + diasFaturamentoMaiorMedia);
+        System.out.println("\n O menor valor de faturamento ocorrido em um dia do mês foi R$ " + menorFaturamento);
+        System.out.println("\n O maior valor de faturamento ocorrido em um dia do mês foi R$ " + maiorFaturamento);
+        System.out.println("\n Número de dias no mês em que o valor de faturamento diário foi superior à média mensal: " + count);
 
     }
 
